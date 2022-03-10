@@ -1,0 +1,31 @@
+{% extends 'frame_selector/base.html' %}
+{% bootstrap_css %} <!-- 追加 -- >
+
+{% block content %}
+  <div class="fade_area">
+    <h2 class="page_title">- Contact -</h2>
+    <br><br>
+    <div class="message">
+      {% if message_e %}
+      <br><br><br><br>
+      <h1>{{ message_e}}</h1>
+        <p>{{ message_j }}</p>
+      {% else %}
+        <p>ご意見、感想などはこちらから</p>
+      {% endif %}
+      <br>
+    </div>
+    {% if form %}
+      <div class="input_forms contact_forms">
+        <form action="{% url 'frame_selector:contact' %}" method="POST" >{% csrf_token %}
+          {{ form.as_p }}
+          <br>
+          <button type="submit" class="input_button">Submit</button>
+        </form>
+      </div>
+    {% else %}
+    <br><br><br><br><br><br><br><br>
+    {% endif %}
+    <br>
+    </div>  
+{% endblock %}

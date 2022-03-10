@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FRAME SELECTOR</title>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'frame_selector/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+<!-- header -->
+<header  class="header_bg">
+        <div class="header_contents">
+          <h1><a class="header_logo" href="{% url 'frame_selector:index' %}">FRAME SELECTOR</a></h1>
+          <div class="responsive_btn">
+            <div class="menu_line"></div>
+            <div class="menu_line"></div>
+          </div>
+          <nav class="header_nav">
+            <ul class="header_nav_lists">
+              <li><a class="nav_link" href="{% url 'frame_selector:index' %}">Top</a></li>
+              <li><a class="nav_link" href="{% url 'frame_selector:about' %}">About</a></li>
+              <li><a class="nav_link" href="{% url 'frame_selector:contact' %}">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <br><br>
+<!-- content -->
+      <div class="content_page">
+        {% block content %}{% endblock %}
+      </div>
+<!-- footer -->
+
+      <footer>
+        <ul class="footer_menu">
+          <li><a href="{% url 'frame_selector:about' %}">about</a> ｜</li>
+          <li><a href="{% url 'frame_selector:contact' %}">Contact</a></li>
+        </ul>
+        <p>- Created in 2022 -</p>
+        <br>
+      </footer>
+      <script src="{% static 'frame_selector/js/script.js' %}"></script> 
+  </body>
+</html>

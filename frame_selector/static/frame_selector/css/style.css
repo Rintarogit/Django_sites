@@ -1,0 +1,838 @@
+@charset "UTF-8";
+/* Reset style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Biryani', sans-serif;
+}
+a {
+  color: white;
+}
+p {
+  color: white;   
+}
+
+/* ============== */
+.fade_area{
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  animation-name: fadein;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================ header ================ */
+header{
+  z-index: 9999;
+  position:fixed;
+}
+
+.header_bg {
+  background: black;
+  width: 100%;
+  height: 72px;
+  margin: 0 auto;
+}
+
+.header_contents {
+  width: 100%;
+  height: 100%;
+  max-width: 1700px;
+  margin: 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+
+.header_logo{
+  font-size: 22px;
+  margin: 0 0 0 40px;
+  color: #f3eeee;
+  text-decoration: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.header_logo:hover {
+  text-decoration: none;
+  color: #f3eeee;
+}
+
+.header_nav_lists {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.header_nav_lists li {
+  margin: 0 40px 0 0;
+  list-style: none;
+}
+
+.nav_link {
+  font-size: 18px;
+  color: #f3eeee;
+  text-decoration: none;
+}
+
+.nav_link:hover {
+  animation: flash 2s linear infinite;
+  color: #f3eeee;
+  text-decoration: none;
+}
+@keyframes flash { /* hoverの点滅アニメーション */
+  0%,100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+a{
+  font-size: 1vw; /* フォントサイズを可変に */
+}
+
+
+/* Responsive menu button */
+.responsive_btn {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 40px 0 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.menu_line {
+  background: #fafafa;
+  border-radius: 5px;
+  width: 100%;
+  height: 5px;
+  margin: 4px 0;
+}
+
+/* Responsive style */
+@media screen and (max-width: 768px) {
+  .responsive_btn {
+    display: flex;
+  }
+  .header_bg {
+    position: relative;
+  }
+  
+  .header_contents h1 {
+    margin: auto;       /* ロゴを中央揃え */
+  }
+
+  .header_nav {
+    background: #323232;
+    width: 100%;
+    height: 100vh;
+    padding: 80px 0 0 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: .5s;
+  }
+  
+  .header_nav_lists {
+    display: block;
+    text-align: center;
+  }
+  .header_nav_lists li {
+    margin: 0 0 40px;
+    text-align: center;
+  }
+  .nav_link {
+    font-size: 20px;
+  }
+}
+.menu_active {
+  right: 0;
+}
+/* ============== header end ============== */
+
+
+/* ================ body ================ */
+body {
+  margin: 0;
+  padding: 0;
+  /* 背景画像の設定 */
+  background-image: url( "/static/frame_selector/images/background2.jpg");
+  background-color: black;
+  background-attachment : scroll;
+  background-position: center ;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.container{
+  width: 100%;
+  margin: auto;
+  }
+/* --------box1-------- */
+.boxtop{
+  float: left;
+  width: 100%;
+  background-color: rgb(161, 167, 167,0.8);
+}
+
+.box1{
+  box-sizing:border-box;
+  width: 50%;
+  height: auto;
+  float: left;
+  box-sizing:border-box;
+}
+
+#frame_pic {
+  width:88%;
+	padding: 1rem;
+	margin-top: 2rem;
+  margin-left: 3rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+	border: 1px solid #ccc;
+}
+
+/* -----------box2----------- */
+.box2{
+  box-sizing:border-box;
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding-top: 25px;  /* フレームの画像変えたときの調整はここらへん */
+  padding-bottom: 0%;  
+}
+
+/* input_forms */
+.input_forms{
+  width: 88%;
+  height: 100%;
+	padding: 1rem 2rem;
+	margin-bottom: 3rem;
+  text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #ccc;
+}
+
+.input_forms p{
+	margin-top: 1rem;
+  font-size: max(1vw,10px); /* フォントサイズも可変に */
+
+}
+
+.input_forms input{
+  display: block;
+	width: 98%;
+	height: 2rem;
+	outline: none;
+	padding-left: 0.5rem;
+	margin-top: 0.2rem;
+	border: 1px solid #ccc;
+}
+
+
+.input_button{
+  background:  rgb(80, 20, 5,0.6);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  padding-top: 0.4em;
+  font-size: max(1vw,10px); /* フォントサイズも可変に */
+	border: 1px #ccc solid;
+
+}
+.input_button:hover{
+  background:#ccc;
+  color: rgba(51, 3, 3);
+}
+.input_button:before,.input_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:4px;
+  width:0;
+  background:  rgba(54, 3, 3);
+  transition:400ms ease all;
+}
+.input_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.input_button:hover:before,.input_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+
+
+/* -----------box2 end----------- */
+
+/* -----------box3----------- */
+.box3{
+  width: 100%;
+  height: 10rem;
+  float: left;
+  
+}
+
+.box3 #inner_area{
+  width: 100%;
+  margin-top: 3rem;
+  margin-left: auto;
+	margin-right: auto;
+}
+
+.box3 p{
+  font-size: 3vw; /* フォントサイズも可変に */
+  color: #f3eeee;
+  text-align: center;
+  margin-top: 2rem;
+  text-decoration: none;
+}
+
+/* ---英語メッセージ関連--- */
+.bgextend{
+  animation-name:bgextendAnimeBase;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+  position: relative;
+  overflow: hidden;/*　はみ出た色要素を隠す　*/
+  opacity:0;
+}
+@keyframes bgextendAnimeBase{
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;  
+  }
+}
+
+.bgappear{
+  animation-name:bgextendAnimeSecond;
+  animation-duration:1s;
+  animation-delay: 0.6s;
+  animation-fill-mode:forwards;
+  opacity: 0;
+}
+
+@keyframes bgextendAnimeSecond{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*伸びる背景色*/
+.bgLRextend::before{
+  animation-name:bgLRextendAnime;
+  animation-duration:4.5s;
+  animation-fill-mode:forwards;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 3, 3, 0.596);/*伸びる背景色の設定*/
+}
+@keyframes bgLRextendAnime{
+  0%,100% {
+    transform-origin:left;
+    transform:scaleX(0);
+  }
+  50% {
+    transform-origin:left;
+    transform:scaleX(1);
+  }
+  50.001% {
+    transform-origin:right;
+  }
+}
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearTrigger,
+.bgLRextendTrigger{
+    opacity: 0;
+}
+/* ---英語メッセージ関連 end--- */
+/* -----------box3 end----------- */
+
+/* -----------box4----------- */
+.box4{
+  width: 100%;
+  float: left;
+  background-color: rgb(161, 167, 167,0.8);
+  padding-left: 1em;
+}
+
+/* ------------------ */
+/* 列の表示切替ボタン */
+/* ------------------ */
+
+/* スイッチ表示ボタン */
+.selectBtn {
+	display: flex;
+	align-items: baseline;
+	margin: 0.5em 0;
+}
+.selectBtn a {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+  color   : #ccc;             /* 選択タブの枠線     */
+  background-color: rgba(8, 10, 10, 0.6);
+	margin: 0 10px 0 0;
+	padding: .5em;
+  padding-top: .83em;
+  border-radius: 3px;
+	border: 1px #ccc solid;
+	text-decoration: none;
+	line-height: 1;
+	box-sizing: border-box;
+	flex-shrink: 0;
+}
+
+
+.selectTxt {
+	display: inline-block;
+}
+
+.selectItem div {
+	margin: 0 0 .5em;
+}
+.selectItem div:last-child {
+	margin: 0;
+}
+
+
+/* === ボタンを表示するエリア ============================== */
+ .switchArea {
+  line-height    : 30px;                /* 1行の高さ          */
+  letter-spacing : 0;                   /* 文字間             */
+  text-align     : center;              /* 文字位置は中央     */
+  font-size      : 12px;                /* 文字サイズ         */
+  display        : inline-block;        /* 各スイッチを横並び */
+  position       : relative;            /* 親要素が基点       */
+  margin         : auto;                /* 中央寄せ           */
+  width          : 108px;               /* ボタンの横幅       */
+}
+
+ /* === チェックボックス ==================================== */
+.switchArea input[type="checkbox"] {
+  display        : none;            /* チェックボックス非表示 */
+}
+
+ /* === チェックボックスのラベル（OFFのとき） ==================== */
+.switchArea label {
+  display        : block;               /* ボックス要素に変更 */
+  box-sizing     : border-box;          /* 枠線を含んだサイズ */
+  height         : 30px;                /* ボタンの高さ       */
+  border         : 2px solid rgba(0, 179, 89, 0.23);   /* 未選択タブのの枠線 */
+  border-radius  : 15px;                /* 角丸               */
+  background-color: rgba(238, 240, 240, 0.6);
+}
+
+ /* === チェックボックスのラベル（ONのとき） ================ */
+.switchArea input[type="checkbox"]:checked +label {
+  border-color   : rgba(0, 179, 89, 0.97);             /* 選択タブの枠線     */
+  background-color: rgba(238, 240, 240, 0.6);
+
+}
+
+ /* === 表示する文字（OFFのとき） ================================ */
+.switchArea label span:after{
+  padding        : 0 0 0 18px;          /* 表示する位置       */
+  color          : rgba(0, 179, 89, 0.6);             /* 文字色             */
+}
+
+ /* === 表示する文字（ONのとき） ============================ */
+.switchArea input[type="checkbox"]:checked + label span:after{
+  padding        : 0 18px 0 0;          /* 表示する位置       */
+  color          : rgba(0, 179, 89, 0.97);             /* 文字色             */
+}
+
+ /* === 丸部分のSTYLE（OFFのとき） =============================== */
+.switchArea #swImg {
+  position       : absolute;            /* 親要素からの相対位置*/
+  width          : 22px;                /* 丸の横幅           */
+  height         : 22px;                /* 丸の高さ           */
+  background     : rgba(0, 179, 89, 0.23);             /* カーソルタブの背景 */
+  top            : 4px;                 /* 親要素からの位置   */
+  left           : 4px;                 /* 親要素からの位置   */
+  border-radius  : 11px;                /* 角丸               */
+  transition     : .2s;                 /* 滑らか変化         */
+}
+
+ /* === 丸部分のSTYLE（ONのとき） =========================== */
+.switchArea input[type="checkbox"]:checked ~ #swImg {
+  transform      : translateX(78px);    /* 丸も右へ移動       */
+  background     : rgba(0, 179, 89, 0.97);             /* カーソルタブの背景 */
+}
+
+/* === 表示する文字（ONのとき） ============================ */
+.Area_a input[type="checkbox"]:checked + label span:after{
+  content        : "[A]Seat tube";
+}
+.Area_b input[type="checkbox"]:checked + label span:after{
+  content        : "[B]Seat angle"; 
+}
+.Area_c input[type="checkbox"]:checked + label span:after{
+  content        : "[C]Top tube";
+}
+.Area_d input[type="checkbox"]:checked + label span:after{
+  content        : "[D]Head tube"; 
+}
+.Area_e input[type="checkbox"]:checked + label span:after{
+  content        : "[E]Head angle";
+}
+.Area_f input[type="checkbox"]:checked + label span:after{
+  content        : "[F]Wheel base";
+}
+.Area_g input[type="checkbox"]:checked + label span:after{
+  content        : "[G]Rear senter";
+}
+.Area_h input[type="checkbox"]:checked + label span:after{
+  content        : "[H]BB drop";
+}
+.Area_i input[type="checkbox"]:checked + label span:after{
+  content        : "[I]Stack";
+}
+.Area_j input[type="checkbox"]:checked + label span:after{
+  content        : "[J]Reach";
+}
+.Area_u input[type="checkbox"]:checked + label span:after{
+  content        : "メーカーURL";
+}
+
+
+ /* === 表示する文字（OFFのとき） ================================ */
+ .Area_brand label span:after{
+  content        : "Brand";               /* 表示する文字       */
+}
+.Area_model label span:after{
+  content        : "Model";               /* 表示する文字       */
+}
+
+.Area_year label span:after{
+  content        : "Year";               /* 表示する文字       */
+}
+.Area_size label span:after{
+  content        : "Size";               /* 表示する文字       */
+}
+ .Area_a label span:after{
+  content        : "[A]";               /* 表示する文字       */
+}
+.Area_b label span:after{
+  content        : "[B]";               /* 表示する文字       */
+}
+.Area_c label span:after{
+  content        : "[C]";               /* 表示する文字       */
+}
+.Area_d label span:after{
+  content        : "[D]";               /* 表示する文字       */
+}
+.Area_e label span:after{
+  content        : "[E]";               /* 表示する文字       */
+}
+.Area_f label span:after{
+  content        : "[F]";               /* 表示する文字       */
+}
+.Area_g label span:after{
+  content        : "[G]";               /* 表示する文字       */
+}
+.Area_h label span:after{
+  content        : "[H]";               /* 表示する文字       */
+}
+.Area_i label span:after{
+  content        : "[I]";               /* 表示する文字       */
+}
+.Area_j label span:after{
+  content        : "[J]";               /* 表示する文字       */
+}
+.Area_u label span:after{
+  content        : "[URL]";               /* 表示する文字       */
+}
+#cl {
+  display: none;
+}
+
+
+/* -----------box4 end----------- */
+
+
+
+
+.table-responsive > .table {
+	width: 100%;
+	table-layout: auto;
+	word-wrap: break-word;
+
+}
+
+
+  button{
+    background:none;
+    border:0;
+    cursor: pointer;
+  }
+  
+  form{
+    display: inline-block;
+  }
+  
+
+.box5{
+  width: 100%;
+  float: left;
+  background-color: rgb(161, 167, 167,0.8);
+}
+.box6{
+  width: 100%;
+  height: 3rem;
+  float: left;
+}
+.box6 h1{
+  width: 100%;
+  margin-top: 2.5rem;
+  text-align: center;
+  color: #fafafa;
+}
+
+
+
+/* ----------- */
+/* ---table--- */
+/* ----------- */
+
+table {
+     border-collapse: collapse;
+     margin-bottom: .5rem;
+      color: rgb(80, 20, 5);
+    }
+table th, table td {
+    border: 1px solid #999;
+    padding: .1rem .3rem; 
+    background-color: rgb(161, 167, 167,0.8);
+
+  }
+table th {
+  background-color: #ddd;
+  }
+.frame_table tr:hover td {
+    color: #ddd;
+    background-color: rgb(80, 20, 5);
+  }
+table li{
+  list-style: none;
+  }
+
+/*-----------------*/  
+
+
+/* ================ about & contact page================ */
+.page_title{
+  text-align:center;
+  color: #fff;
+}
+.message{
+  position:center;
+  text-align:center;
+  font-size: 1.2vw;
+}
+.message h5{
+  color: rgb(239, 255, 20);
+}
+
+.contact_forms{
+  text-align:center; 
+}
+.contact_forms p{
+  display:grid;
+}
+/* ============== about & contact end ================ */
+
+
+
+
+/* ================ 画面幅768px以下 ================ */
+@media screen and (max-width: 900px) {
+  body {
+    margin: 0;
+    padding: 0;
+    /* width: 900; */
+
+    /* 背景画像の設定 */
+    background-color: black;
+    background-image: url( "/static/frame_selector/images/background3.jpg");
+    background-position: center ;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment :fixed;
+    width: 100%;
+  }
+
+  .box1{
+    width: 100%;
+    position: center;
+  }
+  .box2{
+    width: 100%;
+    position: center;
+  }
+
+  /* ================ about page================ */
+  .about{
+    text-align:center;
+    color: #fff;
+  }
+  .message{
+    position:center;
+  }
+  .message p{
+    text-align:center;
+    font-size: 2.5vw;
+  }
+
+  /* ============== about end ================ */
+}
+
+
+
+
+
+/* ================ footer ================ */
+footer{
+  width: 100%;
+  height: 100px;
+  color: white;
+  text-align: center;
+}
+
+ul.footer_menu li {
+  display: inline;
+
+}
+ul.footer_menu a {
+  text-decoration: none;
+}
+
+#sanple a::after {
+  position: absolute;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  bottom: -1px;               /*アンダーラインがaタグの下端から現れる*/
+  transform: scale(0, 1);     /*アンダーラインの縮尺比率。ホバー前はx方向に0*/
+  transform-origin: left top; /*変形（アンダーラインの伸長）の原点がaタグ（各メニュー）の左端*/
+  transition: transform 0.3s; /*変形の時間*/
+  }
+  
+#sanple  a:hover::after {
+  transform: scale(1, 1);     /*ホバー後、x軸方向に1（相対値）伸長*/
+  }
+
+/* ============== footer end ============== */
+
+
+
+/* -------メモ--------- */
+/* アンダーバー */
+#sanple a::after {
+  position: absolute;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  bottom: -1px;               /*アンダーラインがaタグの下端から現れる*/
+  transform: scale(0, 1);     /*アンダーラインの縮尺比率。ホバー前はx方向に0*/
+  transform-origin: left top; /*変形（アンダーラインの伸長）の原点がaタグ（各メニュー）の左端*/
+  transition: transform 0.3s; /*変形の時間*/
+  }
+  
+#sanple  a:hover::after {
+  transform: scale(1, 1);     /*ホバー後、x軸方向に1（相対値）伸長*/
+  }
+
+
+
+/* ================ frame_detail  ================ */
+
+
+.web_button_area{
+  text-align: center;
+}
+
+.web_button_hover{
+  display: none;
+  }
+.web_button:hover .web_button_nomal{
+  display: none;
+  }
+.web_button:hover .web_button_hover{
+  display: inline;
+  }
+
+.detail_table {
+  width: 100%;
+  border-collapse: collapse;
+  }
+
+.detail_table th,td {
+padding-top: 10px;
+border: 1px solid #ddd;
+}
+
+.detail_table th {
+background: #f4f4f4;
+width: 15%;
+text-align: center;
+}
+
+@media only screen and (max-width:479px) {
+  .detail_table th,td {
+  width: auto;
+  display: block;
+  border-top: none;
+}
+  .detail_table tr:first-child {
+  border-top: 1px solid #d5d5d5;
+  }
+}
+
+/* ============== frame_detail end ============== */

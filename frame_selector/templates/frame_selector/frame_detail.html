@@ -1,0 +1,78 @@
+{% extends 'frame_selector/base.html' %}
+{% bootstrap_css %} <!-- 追加 -- >
+
+{% block content %}
+<div class="fade_area">
+  <h2 class="page_title">{{ frame_code_data.model_name }}</h2>
+  <br>
+  <div class="web_button_area">
+    <button type="button" class="input_button web_button" onclick="location.href='{{ frame_obj.maker_url }}'">
+      <span class="web_button_nomal">Open official website</span>
+      <span class="web_button_hover">　　公式サイトを開く　　</span>
+    </button>
+  </div>
+  <br>  
+
+  <table class="detail_table">
+    <tr>
+    <th>Brand</th>
+    <td>　{{ frame_code_data.maker }}</td>
+    </tr>
+    <tr>
+    <th>Model</th>
+    <td>　{{ frame_code_data.model_name }}</td>
+    </tr>
+    <tr>
+    <th>Year</th>
+    <td>　{{ frame_code_data.model_year }}</td>
+    </tr>
+    <tr>
+    <th>Size</th>
+    <td>　{{ frame_code_data.size }}</td>
+    </tr>
+    <tr>
+    <th>Seat tube</th>
+    <td>　{{ frame_obj.seat_tube }}</td>
+    </tr>
+    <tr>
+      <th>Seat angle</th>
+      <td>　{{ frame_obj.seat_angle }}</td>
+    </tr>
+    <tr>
+      <th>Top tube</th>
+      <td>　{{ frame_obj.top_tube }}</td>
+    </tr>
+    <tr>
+      <th>Head tube</th>
+      <td>　{{ frame_obj.head_tube }}</td>
+    </tr>
+    <tr>
+      <th>Head angle</th>
+      <td>　{{ frame_obj.head_angle }}</td>
+    </tr>
+    <tr>
+      <th>Wheel base</th>
+      <td>　{{ frame_obj.wheel_base }}</td>
+    </tr>
+    <tr>
+      <th>Rear senter</th>
+      <td>　{{ frame_obj.rear_senter }}</td>
+    </tr>
+    <tr>
+      <th>BB drop</th>
+      <td>　{{ frame_obj.bb_drop }}</td>
+    </tr>
+    <tr>
+      <th>Stack</th>
+      <td>　{{ frame_obj.stack }}</td>
+    </tr>
+    <tr>
+      <th>Reach</th>
+      <td>　{{ frame_obj.reach }}</td>
+    </tr>
+  </table>
+</div>  
+
+<br><br>
+
+{% endblock %}

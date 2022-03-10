@@ -1,0 +1,25 @@
+{% extends 'frame_selector/base.html' %}
+{% block content %}
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div>
+  <a href="{% url 'frame_selector:index' %}">ホームに戻る</a>
+</div>
+
+<form action="{% url 'frame_selector:create_account' %}" method="POST">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn">登録</button>
+</form>
+
+<form action="{% url 'frame_selector:account_login' %}" method="POST">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="ユーザID">
+  <input type="password" name="password" placeholder="パスワード">
+  <button type="submit" name="login">ログイン</button>
+</form>
+
+
+</body>
+{% endblock %}

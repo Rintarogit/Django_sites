@@ -1,0 +1,485 @@
+{% extends 'frame_selector/base.html' %}
+{% load static %}  
+{% bootstrap_css %} <!-- 追加 -- >
+{% bootstrap_javascript jquery='full' %} <!--これいる??-->
+
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<!--  datatables css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'frame_selector/css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="scroll.js"></script>
+</head>
+
+<body>
+<div class="fade_area">
+<div class="boxtop" >
+  <div class="box1 frame" >
+    <img id="frame_pic" title="frame_pic" src="{% static "frame_selector/images/frame_img.jpg" %}">
+  </div>
+  <br>
+  <div class="box2">
+    <div class="input_forms">
+      <form action="{% url 'frame_selector:index' %}" method="POST" class="form-inline">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="input_button">Submit</button>
+
+      </form>
+  </div>
+    </div>
+</div>
+<br><br>
+<div class="box3">
+  <div id='inner_area'>
+    <p><span class="bgextend bgLRextendTrigger"><span class="bgappearTrigger">Who will be your buddy?</span></span></p>
+  </div>
+</div>
+
+<!--列の表示切替ボタン-->
+<div class="box4 switchgroup">
+  <div class="selectBtn" ><a href="#">OPEN</a></div>
+  <div class="selectItem">
+    <div class="switchArea Area_brand">
+      <input type="checkbox" id="switch_brand" checked>
+      <label for="switch_brand"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_model">
+      <input type="checkbox" id="switch_model" checked>
+      <label for="switch_model"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_year">
+      <input type="checkbox" id="switch_year" checked>
+      <label for="switch_year"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_size">
+      <input type="checkbox" id="switch_size" checked>
+      <label for="switch_size"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_a">
+      <input type="checkbox" id="switch_a" checked>
+      <label for="switch_a"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_b">
+      <input type="checkbox" id="switch_b" checked>
+      <label for="switch_b"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_c">
+      <input type="checkbox" id="switch_c" checked>
+      <label for="switch_c"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_d">
+      <input type="checkbox" id="switch_d" checked>
+      <label for="switch_d"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_e">
+      <input type="checkbox" id="switch_e" checked>
+      <label for="switch_e"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_f">
+      <input type="checkbox" id="switch_f" checked>
+      <label for="switch_f"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_g">
+      <input type="checkbox" id="switch_g" checked>
+      <label for="switch_g"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_h">
+      <input type="checkbox" id="switch_h" checked>
+      <label for="switch_h"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_i">
+      <input type="checkbox" id="switch_i" checked>
+      <label for="switch_i"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+    <div class="switchArea Area_j">
+      <input type="checkbox" id="switch_j" checked>
+      <label for="switch_j"><span></span></label>
+      <div id="swImg"></div>
+    </div>
+  </div>
+</div>
+
+<!--検索結果テーブル-->
+<div class="box5 frame_table" id='frame_table'>
+  <div class="table-responsive">
+    <div class="overflow-auto" style="max-height:600px">
+      <table id="result_table"class="table  table-striped table table-bordered ">
+        <thead>
+          <form action="{% url 'frame_selector:index' %}#frame_table" method="POST">
+            {% csrf_token %}
+          <tr>
+            <th class="brand">
+              <a class="colbrand_op">Brand</a><a class="colbrand_cl" id='cl'>-</a>
+            </th>
+            <th class="model">
+              <a class="colmodel_op">Model</a><a class="colmodel_cl" id='cl'>-</a>
+            </th>
+            <th class="year">
+              <a class="colyear_op">year</a><a class="colyear_cl" id='cl'>-</a>
+            </th>
+            <th class="size">
+              <a class="colsize_op">Size</a><a class="colsize_cl" id='cl'>-</a>
+            </th>
+            <th class="seat_tube">
+              <a class="cola_op">[A]Seat tube</a><a class="cola_cl" id='cl'>[A]</a>
+            </th>
+            <th>
+              <a class="colb_op">[B]Seat angle</a><a class="colb_cl" id='cl'>[B]</a>
+            </th>
+            <th>
+              <a class="colc_op">[C]Top tube</a><a class="colc_cl" id='cl'>[C]</a>
+            </th>
+            <th>
+              <a class="cold_op">[D]Head tube</a><a class="cold_cl" id='cl'>[D]</a>
+            </th>
+            <th>
+              <a class="cole_op">[E]Head angle</a><a class="cole_cl" id='cl'>[E]</a>
+            </th>
+            <th>
+              <a class="colf_op">[F]Wheel base</a><a class="colf_cl" id='cl'>[F]</a>
+            </th>
+            <th>
+              <a class="colg_op">[G]Rear senter</a><a class="colg_cl" id='cl'>[G]</a>
+            </th>
+            <th>
+              <a class="colh_op">[H]BB drop</a><a class="colh_cl" id='cl'>[H]</a>
+            </th>
+            <th>
+              <a class="coli_op">[I]Stack</a><a class="coli_cl" id='cl'>[I]</a>
+            </th>
+            <th>
+              <a class="colj_op">[J]Reach</a><a class="colj_cl" id='cl'>[J]</a>
+            </th>
+            {% comment %} <th>
+              <a class="colu_op">メーカー・代理店URL</a><a class="colu_cl" id='cl'>URL</a>
+            </th> {% endcomment %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for frame in frames %}
+            <tr class='clickable-row' data-href="{% url 'frame_selector:frame_detail' frame.id %}" target="_blank" rel="noopener noreferrer">
+                <td>
+                <a class="colbrand_op">{{ frame.maker }}<a>
+                <a class="colbrand_cl" id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colmodel_op">{{ frame.model_name }}</a>
+                <a class="colmodel_cl" id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colyear_op">{{ frame.model_year }}</a>
+                <a class="colyear_cl" id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colsize_op">{{ frame.size }}</a>
+                <a class="colsize_cl" id='cl'>-</a>
+              </td>
+              <td>
+                <a class="cola_op">{{ frame.seat_tube }}({{ frame.dif_seat_tube }})</a>
+                <a class="cola_cl" id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colb_op">{{ frame.seat_angle }}({{ frame.dif_seat_angle }})</a>
+                <a class="colb_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colc_op">{{ frame.top_tube }}({{ frame.dif_top_tube }})</a>
+                <a class="colc_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="cold_op">{{ frame.head_tube }}({{ frame.dif_head_tube }})</a>
+                <a class="cold_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="cole_op">{{ frame.head_angle }}({{ frame.dif_head_angle }})</a>
+                <a class="cole_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colf_op">{{ frame.wheel_base }}({{ frame.dif_wheel_base }})</a>
+                <a class="colf_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colg_op">{{ frame.rear_senter }}({{ frame.dif_rear_senter }})</a>
+                <a class="colg_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colh_op">{{ frame.bb_drop }}({{ frame.dif_bb_drop }})</a>
+                <a class="colh_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="coli_op">{{ frame.stack }}({{ frame.dif_stack }})</a>
+                <a class="coli_cl"id='cl'>-</a>
+              </td>
+              <td>
+                <a class="colj_op">{{ frame.reach }}({{ frame.dif_reach }})</a>
+                <a class="colj_cl"id='cl'>-</a>
+              </td>
+              {% comment %} <td>
+                <a class="colu_op">{{ frame.maker_url | linebreaks | urlize }}</a>
+                <a class="colu_cl"id='cl'>-</a>
+              </td> {% endcomment %}
+            </tr>
+          {% empty %}
+            <tr>
+              <td>対象のデータがありません</td>
+              <td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+            </tr>
+          {% endfor %} 
+        </tbody>
+      </table>
+      <br>
+    </div>
+  </div>
+</div>
+</div>
+<div class="box6">
+</div>
+ 
+  <br><br><br><br><br><br><br><br>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!--  datatables js -->
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+
+<!--  テストテーブル -->
+<script>
+  $(function() {
+
+    //切替スイッチ[Brand]★ベタ書きしない方法を後で学習する
+    $('[id="switch_brand"]').change(function(){
+      $(".colbrand_cl").toggle();
+      $(".colbrand_op").hide();
+      $('[id="switch_brand"]:checked').each(function(index, element){
+        $(".colbrand_op").toggle();
+        $(".colbrand_cl").hide();          
+      });
+    });
+    //切替スイッチ[Model]
+    $('[id="switch_model"]').change(function(){
+      $(".colmodel_cl").toggle();
+      $(".colmodel_op").hide();
+      $('[id="switch_model"]:checked').each(function(index, element){
+        $(".colmodel_op").toggle();
+        $(".colmodel_cl").hide();          
+      });
+    });
+    //切替スイッチ[Year]
+    $('[id="switch_year"]').change(function(){
+      $(".colyear_cl").toggle();
+      $(".colyear_op").hide();
+      $('[id="switch_year"]:checked').each(function(index, element){
+        $(".colyear_op").toggle();
+        $(".colyear_cl").hide();          
+      });
+    });
+
+    //切替スイッチ[Size] 
+    $('[id="switch_size"]').change(function(){
+      $(".colsize_cl").toggle();
+      $(".colsize_op").hide();
+      $('[id="switch_size"]:checked').each(function(index, element){
+        $(".colsize_op").toggle();
+        $(".colsize_cl").hide();          
+      });
+    })
+
+    //切替スイッチ[A] 
+    $('[id="switch_a"]').change(function(){
+      $(".cola_cl").toggle();
+      $(".cola_op").hide();
+      $('[id="switch_a"]:checked').each(function(index, element){
+        $(".cola_op").toggle();
+        $(".cola_cl").hide();          
+      });
+    });
+    //切替スイッチ[B]
+    $('[id="switch_b"]').change(function(){
+//      $(this).parent().find('#swImg').animate({width:'hide'});
+      $(".colb_cl").toggle();
+      $(".colb_op").hide();
+      $('[id="switch_b"]:checked').each(function(index, element){
+//        $(this).parent().find('#swImg').animate({width:'toggle'});
+        $(".colb_op").toggle();
+        $(".colb_cl").hide();          
+      });
+    });
+    //切替スイッチ[C]
+    $('[id="switch_c"]').change(function(){
+      $(".colc_cl").toggle();
+      $(".colc_op").hide();
+      $('[id="switch_c"]:checked').each(function(index, element){
+        $(".colc_op").toggle();
+        $(".colc_cl").hide();          
+      });
+    });
+    //切替スイッチ[D]
+    $('[id="switch_d"]').change(function(){
+      $(".cold_cl").toggle();
+      $(".cold_op").hide();
+      $('[id="switch_d"]:checked').each(function(index, element){
+        $(".cold_op").toggle();
+        $(".cold_cl").hide();          
+      });
+    });
+    //切替スイッチ[E]
+    $('[id="switch_e"]').change(function(){
+      $(".cole_cl").toggle();
+      $(".cole_op").hide();
+      $('[id="switch_e"]:checked').each(function(index, element){
+        $(".cole_op").toggle();
+        $(".cole_cl").hide();          
+      });
+    });
+    //切替スイッチ[F]
+    $('[id="switch_f"]').change(function(){
+      $(".colf_cl").toggle();
+      $(".colf_op").hide();
+      $('[id="switch_f"]:checked').each(function(index, element){
+        $(".colf_op").toggle();
+        $(".colf_cl").hide();          
+      });
+    });
+    //切替スイッチ[G]
+    $('[id="switch_g"]').change(function(){
+      $(".colg_cl").toggle();
+      $(".colg_op").hide();
+      $('[id="switch_g"]:checked').each(function(index, element){
+        $(".colg_op").toggle();
+        $(".colg_cl").hide();          
+      });
+    });
+    //切替スイッチ[H]
+    $('[id="switch_h"]').change(function(){
+      $(".colh_cl").toggle();
+      $(".colh_op").hide();
+      $('[id="switch_h"]:checked').each(function(index, element){
+        $(".colh_op").toggle();
+        $(".colh_cl").hide();          
+      });
+    });
+    //切替スイッチ[I]
+    $('[id="switch_i"]').change(function(){
+      $(".coli_cl").toggle();
+      $(".coli_op").hide();
+      $('[id="switch_i"]:checked').each(function(index, element){
+        $(".coli_op").toggle();
+        $(".coli_cl").hide();          
+      });
+    });
+    //切替スイッチ[J]
+    $('[id="switch_j"]').change(function(){
+      $(".colj_cl").toggle();
+      $(".colj_op").hide();
+      $('[id="switch_j"]:checked').each(function(index, element){
+        $(".colj_op").toggle();
+        $(".colj_cl").hide();          
+      });
+    });
+    //切替スイッチ[U]
+    $('[id="switch_u"]').change(function(){
+      $(".colu_cl").toggle();
+      $(".colu_op").hide();
+      $('[id="switch_u"]:checked').each(function(index, element){
+        $(".colu_op").toggle();
+        $(".colu_cl").hide();          
+      });
+    });
+
+
+
+// テストテーブル
+    $(".topen").on("click", function() {
+      $(this).parent('th').parent('tr').nextAll('tr').find('.course').toggle();
+      $(this).parent('th').parent('tr').nextAll('tr').find('.courseB').hide();
+      $(this).hide();
+      $(this).next().show();
+    });
+    $(".tclose").on("click", function() {
+      $(this).parent('th').parent('tr').nextAll('tr').find('.course').hide();
+      $(this).parent('th').parent('tr').nextAll('tr').find('.courseB').toggle();
+      $(this).hide();
+      $(this).prev().show();
+    });
+
+
+
+    $(".open").on("click", function() {
+      $(this).parent('th').nextAll('td').find('.course').toggle();
+      $(this).hide();
+      $(this).next().show();
+    });
+    $(".close").on("click", function() {
+      $(this).parent('th').nextAll('td').find('.course').toggle();
+      $(this).hide();
+      $(this).prev().show();
+    });
+  });
+  </script>
+{% comment %} ーーーーーーーーー   {% endcomment %}
+
+
+
+<script>
+    $(function(){
+        // datatableの設定を変更
+        $("#result_table").DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
+            }
+        });
+
+      });
+
+    //　テーブルの一行リンクにする
+    $(".clickable-row").click(function() {
+        window.alert('新規タブで開きます');
+        const url = $(this).data("href");
+        window.open(url, '_blank');
+    });
+
+
+
+    $(function() {
+
+      //.accordion8の中のli要素の中のp要素がクリックされた時
+      $('.accordion8 li p').click(function() {
+    
+        //クリックされた.accordion8の中のli要素の中のp要素以外のp要素に隣接する要素の横幅を閉じる。
+        $('.accordion8 li p').not($(this)).next().animate({width:'hide'});
+    
+        //クリックされた.accordion8の中のli要素の中のp要素に隣接する要素の横幅を開いたり閉じたりする。
+        $(this).next().animate({width:'toggle'});
+    
+      });
+    });
+
+
+</script>
+
+
+</body>
+
+{% endblock %}
